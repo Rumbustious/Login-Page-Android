@@ -14,7 +14,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
-    EditText email;
+    EditText username;
     EditText password;
     Button loginButton;
 
@@ -23,18 +23,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        email = findViewById(R.id.emailEditText);
+        username = findViewById(R.id.usernameEditText);
         password = findViewById(R.id.passwordEditText);
         loginButton = findViewById(R.id.loginButton);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String emailText = email.getText().toString();
+                String usernameText = username.getText().toString();
                 String passwordText = password.getText().toString();
 
-                if (emailText.equals("admin@gmail.com") && passwordText.equals("1234")) {
-                    setContentView(R.layout.activity_success);
+                if (usernameText.equals("ahmed") && passwordText.equals("1234")) {
+                    Intent intent = new Intent(MainActivity.this, SuccessActivity.class);
+                    intent.putExtra("username", usernameText);
+                    startActivity(intent);
                 } else {
                     findViewById(R.id.main).setBackgroundColor(ContextCompat.getColor(MainActivity.this, android.R.color.holo_red_light));
                 }
